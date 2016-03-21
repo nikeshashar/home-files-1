@@ -1,29 +1,11 @@
-#Path to your oh-my-zsh installation.
-
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# currently liking: 'miloshadzic', 'blinks', 'smt', 'dogenpunk'
-#ZSH_THEME="af-magic"
-ZSH_THEME="dstufft"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias rake="noglob rake"
-
-# Mac Helpers
-alias show_hidden="defaults write com.apple.finder AppleShowAllFiles YES && killall Finder"
-alias hide_hidden="defaults write com.apple.finder AppleShowAllFiles NO && killall Finder"
-
-# SICP Racket Bullshit
-alias racket="racket -i -p neil/sicp -l xrepl"
-
-# Leo's commandments
-alias flounce='echo "I can'\''t work under these conditions" | lolcat; sleep 1; exit'
-alias hissy_fit='echo "I can'\''t work under these conditions" | lolcat; sleep 1;sudo shutdown -h now'
+ZSH_THEME="af-magic"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -40,8 +22,8 @@ alias hissy_fit='echo "I can'\''t work under these conditions" | lolcat; sleep 1
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
-# Uncomment the following line to disable command auto-correction.
-# DISABLE_CORRECTION="true"
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -62,18 +44,15 @@ alias hissy_fit='echo "I can'\''t work under these conditions" | lolcat; sleep 1
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git osx tmux github fasd history-substring-search zsh-syntax-highlighting nyan)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
 
-export ZSH=~/.oh-my-zsh
-source $ZSH/oh-my-zsh.sh
 # User configuration
 
-export PATH=$PATH:"/usr/local/bin:/usr/local/bin/git:/usr/local/heroku/bin:/Users/roidriscoll/.rvm/gems/ruby-2.1.1/bin:/Users/roidriscoll/.rvm/gems/ruby-2.1.1@global/bin:/Users/roidriscoll/.rvm/rubies/ruby-2.1.1/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/roidriscoll/.rvm/bin"
+export PATH=$PATH:"/usr/local/bin:/usr/local/bin/git:/Users/nikesh/.rvm/gems/ruby-2.1.1/bin:/Users/nikesh/.rvm/gems/ruby-2.1.1@global/bin:/Users/nikesh/.rvm/rubies/ruby-2.1.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/nikesh/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
-# move /usr/local/bin/git: before /usr/bin:]
-export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' -c 'nnoremap i <nop>' -"
 
-export EDITOR="/usr/bin/vim"
+source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -88,39 +67,25 @@ export EDITOR="/usr/bin/vim"
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-alias cdh='cd ~/.homesick/repos/home-files/home'
-alias hup='cdh && sh ~/.homesick/repos/home-files/commit.sh && source ~/.zshrc && cd - && clear'
-
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-#############
-# FUNCTIONS
-#############
-
-
-function mygr8() {
-  bin/rake db:migrate
-  bin/rake db:migrate RAILS_ENV=test
-}
-
-mcd() { # creates a directory and places you in it
-  mkdir -p $1
-  cd $1
-}
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias rspec='bundle exec rspec'
+alias gc='git commit -m'
+alias gp='git push'
+alias ga='git add .'
+alias go='git checkout'
+alias gob='git checkout -b'
+alias shipit='git push'
+alias gs='git status'
+alias manup='middleman s & sleep 3 && open http://localhost:4567/ && fg'
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-# Config for 'z': http://jilles.me/badassify-your-terminal-and-shell/
-. `brew --prefix`/etc/profile.d/z.sh
-source /usr/local/share/zsh/site-functions
-alias s="~/chat.txt << "
-
-alias rubes="ruby -run -ehttpd . -p8000"
-alias roigrok="ngrok -subdomain=roi 8000"
-
-bindkey -v
-
-#alias v='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
-#alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
-source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
